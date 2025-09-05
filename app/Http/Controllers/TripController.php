@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Trip;
 
 class TripController extends Controller
 {
     public function index()
     {
         // Load trips with their user and comments
-        $trips = Trip::with('user', 'comments')->get();
+        $trips = Trip::with(['user', 'comments'])->get();
 
-        // Send data to the view
         return view('trips.index', compact('trips'));
     }
 }
