@@ -10,9 +10,9 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('trip_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->text('comment');
+            $table->foreignId('trip_id')->constrained()->onDelete('cascade'); // linked to trips
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // who wrote it
+            $table->text('content'); // the comment
             $table->timestamps();
         });
     }

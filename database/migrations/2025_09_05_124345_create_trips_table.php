@@ -9,14 +9,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('trips', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // 🔑 link to users
-            $table->timestamp('start_time');
-            $table->timestamp('end_time');
-            $table->integer('duration'); // in minutes
-            $table->string('voice_recording')->nullable();
-            $table->tinyInteger('satisfaction'); // 1–5
-            $table->timestamps();
+            $table->id(); // primary key
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // trip owner
+            $table->string('title');  // trip title
+            $table->text('description');  // details
+            $table->string('location');  // city/country
+            $table->date('start_date');
+            $table->date('end_date')->nullable();
+            $table->timestamps(); // created_at, updated_at
         });
     }
 
