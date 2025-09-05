@@ -3,14 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Trip;
+use Illuminate\Http\Request;
 
 class TripController extends Controller
 {
     public function index()
     {
-        // Load trips with their user and comments
-        $trips = Trip::with(['user', 'comments'])->get();
+        // show all trips
+        $trips = Trip::with('user', 'comments')->get();
+        return response()->json($trips);
+    }
 
-        return view('trips.index', compact('trips'));
+    public function show(Trip $trip)
+    {
+        // show one trip by id
+        $trip->load('user', 'comments');
+        return response()->json($trip);
     }
 }

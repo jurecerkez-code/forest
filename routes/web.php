@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
+use App\Http\Controllers\TripController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,8 +19,9 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/password', 'settings.password')->name('settings.password');
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
 });
-use App\Http\Controllers\TripController;
 
+// ✅ Trip routes (only once)
 Route::get('/trips', [TripController::class, 'index'])->name('trips.index');
+Route::get('/trips/{trip}', [TripController::class, 'show'])->name('trips.show');
 
 require __DIR__.'/auth.php';
