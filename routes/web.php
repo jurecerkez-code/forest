@@ -22,6 +22,6 @@ Route::middleware(['auth'])->group(function () {
 
 // ✅ Trip routes (only once)
 Route::get('/trips', [TripController::class, 'index'])->name('trips.index');
-Route::get('/trips/{trip}', [TripController::class, 'show'])->name('trips.show');
+//Route::get('/trips/{trip}', [TripController::class, 'show'])->name('trips.show');
 
 require __DIR__.'/auth.php';

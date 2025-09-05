@@ -7,17 +7,17 @@ use Illuminate\Http\Request;
 
 class TripController extends Controller
 {
+    // List all trips
     public function index()
     {
-        // show all trips
-        $trips = Trip::with('user', 'comments')->get();
-        return response()->json($trips);
+        $trips = Trip::with('user')->latest()->paginate(10); 
+        return view('trips.index', compact('trips'));
     }
 
+    // Show single trip
     public function show(Trip $trip)
     {
-        // show one trip by id
-        $trip->load('user', 'comments');
-        return response()->json($trip);
+        $trip->load(['user', 'comments.user']); // eager load relations
+        return view('trips.show', compact('trip'));
     }
 }
