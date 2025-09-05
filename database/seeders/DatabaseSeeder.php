@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use App\Models\Trip;
+use App\Models\Comment;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,11 +14,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'phone_number' => fake()->phoneNumber(),
-        ]);
+        // Create 10 users
+        User::factory(10)
+            ->has(
+                // Each user has 3 trips
+                Trip::factory(3)
+                    ->has(
+                        // Each trip has 2 comments
+                        Comment::factory(2)
+                    )
+            )
+            ->create();
     }
 }
