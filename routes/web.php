@@ -18,5 +18,8 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/password', 'settings.password')->name('settings.password');
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
 });
+use App\Http\Controllers\TripController;
+
+Route::get('/trips', [TripController::class, 'index'])->name('trips.index');
 
 require __DIR__.'/auth.php';
