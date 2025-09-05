@@ -16,8 +16,15 @@ class TripFactory extends Factory
      */
     public function definition(): array
     {
+        $start = fake()->dateTimeBetween('-1 month', 'now');
+        $end = (clone $start)->modify('+' . rand(20, 120) . ' minutes');
         return [
-            //
+            'user_id' => \App\Models\User::factory(), // each trip belongs to a user
+            'start_time' => $start,
+            'end_time' => $end,
+            'duration' => $end->getTimestamp() - $start->getTimestamp(),
+            'voice_recording' => 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', // demo audio
+            'satisfaction' => fake()->numberBetween(1, 5),
         ];
     }
 }
