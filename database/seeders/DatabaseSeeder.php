@@ -9,21 +9,24 @@ use App\Models\Comment;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // Create 10 users
-        User::factory(10)
-            ->has(
-                // Each user has 3 trips
-                Trip::factory(3)
-                    ->has(
-                        // Each trip has 2 comments
-                        Comment::factory(2)
-                    )
-            )
-            ->create();
+        // Create 5 users
+        $users = User::factory(5)->create();
+
+        // Each user creates 2 trips
+        $users->each(function ($user) {
+            $trips = Trip::factory(2)->create([
+                'user_id' => $user->id,
+            ]);
+
+            // Each trip gets 3 comments from random users
+            $trips->each(function ($trip) use ($user) {
+                Comment::factory(3)->create([
+                    'trip_id' => $trip->id,
+                    'user_id' => $user->id,
+                ]);
+            });
+        });
     }
 }

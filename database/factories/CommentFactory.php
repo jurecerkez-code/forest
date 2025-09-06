@@ -2,19 +2,21 @@
 
 namespace Database\Factories;
 
+use App\Models\Comment;
+use App\Models\User;
+use App\Models\Trip;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Comment>
- */
 class CommentFactory extends Factory
 {
+    protected $model = Comment::class;
+
     public function definition(): array
     {
         return [
-            'trip_id' => \App\Models\Trip::factory(),   // create a trip automatically
-            'user_id' => \App\Models\User::factory(),   // create a user automatically
-            'comment' => fake()->sentence(),            // random comment
+            'user_id' => User::factory(),
+            'trip_id' => Trip::factory(),
+            'content' => $this->faker->sentence(),
         ];
     }
 }
