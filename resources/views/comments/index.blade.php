@@ -3,18 +3,26 @@
 @section('content')
     <h1>All Comments</h1>
 
-    @if($comments->count() > 0)
-        <ul>
+    <table border="1" cellpadding="8">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Content</th>
+                <th>User</th>
+                <th>Trip</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
             @foreach($comments as $comment)
-                <li>
-                    <a href="{{ route('comments.show', $comment->id) }}">
-                        {{ $comment->content }}
-                    </a>
-                    <small>by User {{ $comment->user_id }} (on Trip {{ $comment->trip_id }})</small>
-                </li>
+                <tr>
+                    <td>{{ $comment->id }}</td>
+                    <td>{{ $comment->content }}</td>
+                    <td>{{ $comment->user ? $comment->user->name : 'Unknown' }}</td>
+                    <td>{{ $comment->trip ? $comment->trip->title : 'Unknown' }}</td>
+                    <td><a href="{{ route('comments.show', $comment->id) }}">View</a></td>
+                </tr>
             @endforeach
-        </ul>
-    @else
-        <p>No comments yet.</p>
-    @endif
+        </tbody>
+    </table>
 @endsection
