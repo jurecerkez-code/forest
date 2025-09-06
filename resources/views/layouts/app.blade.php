@@ -8,9 +8,12 @@
 <body>
     <header>
         <nav>
-            <a href="{{ route('home') }}">Home</a> |
-            <a href="{{ route('trips.index') }}">Trips</a>
-        </nav>
+    <a href="{{ route('home') }}">Home</a>
+    <a href="{{ route('trips.index') }}">Trips</a>
+    <a href="{{ route('users.index') }}">Users</a>
+    <a href="{{ route('comments.index') }}">Comments</a>
+</nav>
+
     </header>
 
     <main>
