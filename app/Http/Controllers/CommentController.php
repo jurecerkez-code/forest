@@ -7,9 +7,17 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+    // Show all comments
     public function index()
     {
-        $comments = Comment::latest()->get();
+        $comments = Comment::with('user', 'trip')->get();
+
         return view('comments.index', compact('comments'));
+    }
+
+    // Show one comment
+    public function show(Comment $comment)
+    {
+        return view('comments.show', compact('comment'));
     }
 }
