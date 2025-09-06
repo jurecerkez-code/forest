@@ -20,11 +20,12 @@ class DatabaseSeeder extends Seeder
                 'user_id' => $user->id,
             ]);
 
-            // Each trip gets 3 comments from random users
+            // Add 3 comments to each trip
             $trips->each(function ($trip) use ($user) {
                 Comment::factory(3)->create([
                     'trip_id' => $trip->id,
-                    'user_id' => $user->id,
+                    // Pick a random user for each comment
+                    'user_id' => \App\Models\User::inRandomOrder()->first()->id,
                 ]);
             });
         });
