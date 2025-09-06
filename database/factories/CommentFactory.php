@@ -14,9 +14,9 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(),
-            'trip_id' => Trip::factory(),
             'content' => $this->faker->sentence(),
+            'user_id' => User::inRandomOrder()->first()?->id ?? User::factory(),
+            'trip_id' => Trip::inRandomOrder()->first()?->id ?? Trip::factory(),
         ];
     }
 }
