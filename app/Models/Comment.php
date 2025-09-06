@@ -2,18 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    use HasFactory;
+    protected $fillable = ['content', 'user_id', 'trip_id'];
 
-    protected $fillable = [
-        'trip_id',
-        'comment',
-    ];
+    // Each comment belongs to a user
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
+    // Each comment belongs to a trip
     public function trip()
     {
         return $this->belongsTo(Trip::class);
