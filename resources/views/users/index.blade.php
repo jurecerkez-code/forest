@@ -4,14 +4,12 @@
     <h1>All Users</h1>
 
     <ul>
-        @forelse ($users as $user)
+        @foreach ($users as $user)
             <li>
                 <a href="{{ route('users.show', $user) }}">
                     {{ $user->name ?? $user->phone }}
                 </a>
             </li>
-        @empty
-            <li>No users found.</li>
-        @endforelse
+        @endforeach
     </ul>
 @endsection
