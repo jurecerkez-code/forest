@@ -1,28 +1,32 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>All Comments</h1>
+    <h1 class="text-2xl font-bold mb-6">All Comments</h1>
 
-    <table border="1" cellpadding="8">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Content</th>
-                <th>User</th>
-                <th>Trip</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($comments as $comment)
+    <div class="overflow-hidden rounded-lg bg-white shadow">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
                 <tr>
-                    <td>{{ $comment->id }}</td>
-                    <td>{{ $comment->comment }}</td>
-                    <td>{{ $comment->user ? $comment->user->name : 'Unknown' }}</td>
-                    <td>{{ $comment->trip ? $comment->trip->title : 'Unknown' }}</td>
-                    <td><a href="{{ route('comments.show', $comment->id) }}">View</a></td>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Content</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Trip</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                @foreach($comments as $comment)
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $comment->id }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $comment->comment }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $comment->user ? $comment->user->name : 'Unknown' }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{{ $comment->trip ? ('Trip #'.$comment->trip_id) : 'Unknown' }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm">
+                            <a href="{{ route('comments.show', $comment->id) }}" class="text-blue-600 hover:text-blue-800 font-medium">View</a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 @endsection
