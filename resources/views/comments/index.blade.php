@@ -17,7 +17,7 @@
             @foreach($comments as $comment)
                 <tr>
                     <td>{{ $comment->id }}</td>
-                    <td>{{ $comment->content }}</td>
+                    <td>{{ $comment->comment }}</td>
                     <td>{{ $comment->user ? $comment->user->name : 'Unknown' }}</td>
                     <td>{{ $comment->trip ? $comment->trip->title : 'Unknown' }}</td>
                     <td><a href="{{ route('comments.show', $comment->id) }}">View</a></td>

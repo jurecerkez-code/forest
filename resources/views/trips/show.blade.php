@@ -15,7 +15,7 @@
         <ul>
             @foreach($trip->comments as $comment)
                 <li>
-                    {{ $comment->content }} — 
+                    {{ $comment->comment }} — 
                     <em>{{ $comment->user ? $comment->user->name : 'Anonymous' }}</em>
                 </li>
             @endforeach
