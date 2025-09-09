@@ -16,7 +16,7 @@ class CommentFactory extends Factory
         return [
             'user_id' => User::factory(),
             'trip_id' => Trip::factory(),
-            'content' => $this->faker->sentence(),
+            'comment' => $this->faker->sentence(),
         ];
     }
 }
