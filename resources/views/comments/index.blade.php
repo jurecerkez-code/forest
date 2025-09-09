@@ -29,4 +29,8 @@
             </tbody>
         </table>
     </div>
+
+    <div class="mt-6">
+        {{ $comments->links() }}
+    </div>
 @endsection

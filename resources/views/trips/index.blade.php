@@ -13,4 +13,8 @@
             </div>
         @endforeach
     </div>
+
+    <div class="mt-6">
+        {{ $trips->links() }}
+    </div>
 @endsection

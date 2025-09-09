@@ -10,7 +10,7 @@ class CommentController extends Controller
     // Show all comments
     public function index()
     {
-        $comments = Comment::with('user', 'trip')->get();
+        $comments = Comment::with('user', 'trip')->latest()->paginate(10);
 
         return view('comments.index', compact('comments'));
     }
